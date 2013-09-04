@@ -13,6 +13,7 @@ class Hand
 
     const COUPLE = 2;
     const DOUBLE_COUPLE = 3;
+    const TRIO = 4;
 
     public $cards;
 

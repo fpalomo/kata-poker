@@ -116,4 +116,22 @@ class HandTest extends \PHPUnit_Framework_TestCase
     }
 
 
+
+    public function testTrio(){
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(1, Card::HEARTS),
+            new Card(1, Card::DIAMONDS),
+            new Card(2, Card::PIKES),
+            new Card(9, Card::DIAMONDS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(Hand::TRIO, $hand->winnerCombination());
+
+    }
+
+
+
 }
