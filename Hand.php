@@ -44,6 +44,15 @@ class Hand
             array_push($numbers, $card->number);
         }
         $values = array_count_values($numbers);
+        // ladder
+        sort($numbers);
+        $result=self::LADDER;
+        for($i=1;$i<count($numbers);$i++){
+            if($numbers[$i]!=$numbers[$i-1]+1){
+                $result = null;
+                break;
+            }
+        }
         foreach ($values as $number) {
             // trio
             if ($number == 3) {
