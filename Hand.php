@@ -11,14 +11,14 @@ namespace Poker;
 class Hand
 {
 
-    const COUPLE=2;
-    const DOUBLE_COUPLE=3;
+    const COUPLE = 2;
+    const DOUBLE_COUPLE = 3;
 
     public $cards;
 
     public function __construct(array $cards)
     {
-        if (count ($cards)!=5){
+        if (count($cards) != 5) {
             throw new \exception ("wrong number of cards");
         }
         foreach ($cards as $card) {
@@ -31,15 +31,27 @@ class Hand
     }
 
 
-    public function winnerCombination(){
+    public function winnerCombination()
+    {
         $numbers = array();
-        foreach ($this->cards as $card){
-            if (in_array($card->number,$numbers)){
-                return self::COUPLE;
-            }
-            array_push($numbers,$card->number);
+        $result = null;
+        foreach ($this->cards as $card) {
+            array_push($numbers, $card->number);
         }
-        return null;
+        $values = array_count_values($numbers);
+        foreach ($values as $number) {
+            // pareja
+            if ($number == 2) {
+                if ($result == self::COUPLE) {
+                    $result = self::DOUBLE_COUPLE;
+                } else {
+                    $result = self::COUPLE;
+                }
+            }
+
+        }
+
+        return $result;
     }
 
 
