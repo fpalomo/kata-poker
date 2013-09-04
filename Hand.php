@@ -31,7 +31,7 @@ class Hand
 
 
     public function winnerCombination(){
-        return false;
+        return self::COUPLE;
     }
 
 
