@@ -83,5 +83,21 @@ class HandTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testNoValidCombination()
+    {
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(2, Card::HEARTS),
+            new Card(4, Card::DIAMONDS),
+            new Card(7, Card::DIAMONDS),
+            new Card(9, Card::DIAMONDS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(null, $hand->winnerCombination());
+
+    }
+
 
 }

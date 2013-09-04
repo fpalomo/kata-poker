@@ -31,7 +31,14 @@ class Hand
 
 
     public function winnerCombination(){
-        return self::COUPLE;
+        $numbers = array();
+        foreach ($this->cards as $card){
+            if (in_array($card->number,$numbers)){
+                return self::COUPLE;
+            }
+            array_push($numbers,$card->number);
+        }
+        return null;
     }
 
 
