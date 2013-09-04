@@ -47,40 +47,45 @@ class Hand
             array_push($numbers, $card->number);
             array_push($suits, $card->suit);
         }
-        $values = array_count_values($numbers);
+        $totalValues = array_count_values($numbers);
         $totalSuites = array_count_values($suits);
-        // color
-        if (count($totalSuites) == 1) {
-            $result = self::COLOR;
+        // full
+        if (count($totalValues) == 2) {
+            $result = self::FULL;
         }
-
-
-        // ladder
-        if ($result < self::COLOR) {
-            sort($numbers);
-            $result = self::LADDER;
-            for ($i = 1; $i < count($numbers); $i++) {
-                if ($numbers[$i] != $numbers[$i - 1] + 1) {
-                    $result = null;
-                    break;
-                }
+        if ($result < self::FULL) {
+            // color
+            if (count($totalSuites) == 1) {
+                $result = self::COLOR;
             }
-            if ($result < self::LADDER) {
-                foreach ($values as $number) {
-                    // trio
-                    if ($number == 3) {
-                        if ($result < self::TRIO) {
-                            $result = self::TRIO;
-                        }
+
+            // ladder
+            if ($result < self::COLOR) {
+                sort($numbers);
+                $result = self::LADDER;
+                for ($i = 1; $i < count($numbers); $i++) {
+                    if ($numbers[$i] != $numbers[$i - 1] + 1) {
+                        $result = null;
+                        break;
                     }
-                    if ($number == 2) {
-                        // double couple
-                        if ($result == self::COUPLE) {
-                            $result = self::DOUBLE_COUPLE;
-                        } else {
-                            // couple
-                            if ($result < self::COUPLE) {
-                                $result = self::COUPLE;
+                }
+                if ($result < self::LADDER) {
+                    foreach ($totalValues as $number) {
+                        // trio
+                        if ($number == 3) {
+                            if ($result < self::TRIO) {
+                                $result = self::TRIO;
+                            }
+                        }
+                        if ($number == 2) {
+                            // double couple
+                            if ($result == self::COUPLE) {
+                                $result = self::DOUBLE_COUPLE;
+                            } else {
+                                // couple
+                                if ($result < self::COUPLE) {
+                                    $result = self::COUPLE;
+                                }
                             }
                         }
                     }
