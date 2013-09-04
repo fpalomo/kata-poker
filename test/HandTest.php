@@ -219,6 +219,22 @@ class HandTest extends \PHPUnit_Framework_TestCase
 
 
 
+    public function testFullVsDoubleCouples(){
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(1, Card::DIAMONDS),
+            new Card(1, Card::PIKES),
+            new Card(5, Card::CLUBS),
+            new Card(5, Card::DIAMONDS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(Hand::FULL, $hand->winnerCombination());
+
+    }
+
+
 
 
 

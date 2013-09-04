@@ -16,6 +16,7 @@ class Hand
     const TRIO = 4;
     const LADDER = 5;
     const COLOR = 6;
+    const FULL = 7;
 
     public $cards;
 
