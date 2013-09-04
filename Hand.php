@@ -35,18 +35,27 @@ class Hand
     public function winnerCombination()
     {
         $numbers = array();
-        $result = null;
+        $result = 0;
         foreach ($this->cards as $card) {
             array_push($numbers, $card->number);
         }
         $values = array_count_values($numbers);
         foreach ($values as $number) {
-            // pareja
+            // trio
+            if ($number == 3) {
+                if ($result < self::TRIO) {
+                    $result = self::TRIO;
+                }
+            }
             if ($number == 2) {
+                // double couple
                 if ($result == self::COUPLE) {
                     $result = self::DOUBLE_COUPLE;
                 } else {
-                    $result = self::COUPLE;
+                    // couple
+                    if ($result < self::COUPLE) {
+                        $result = self::COUPLE;
+                    }
                 }
             }
 
