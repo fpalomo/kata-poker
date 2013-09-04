@@ -12,6 +12,7 @@ class Hand
 {
 
     const COUPLE=2;
+    const DOUBLE_COUPLE=3;
 
     public $cards;
 
