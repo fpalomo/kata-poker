@@ -36,7 +36,7 @@ class HandTest extends \PHPUnit_Framework_TestCase
      * //TODO specific exceptions per error
      * @expectedException exception
      */
-    public function testInvalidConstructWrongNumber()
+    public function testInvalidConstructWrongNumberofCards()
     {
         $cards = array(
             new Card(2, Card::DIAMONDS),
@@ -57,6 +57,25 @@ class HandTest extends \PHPUnit_Framework_TestCase
     {
         $cards = array(
             new Card(2, 44),
+            new Card(2, Card::DIAMONDS),
+            new Card(4, Card::DIAMONDS),
+            new Card(2, Card::DIAMONDS),
+        );
+
+        $hand = new Hand($cards);
+
+    }
+
+
+
+    /**
+     * //TODO specific exceptions per error
+     * @expectedException exception
+     */
+    public function testInvalidConstructWrongContentCardWithWrongNumber()
+    {
+        $cards = array(
+            new Card(112, 44),
             new Card(2, Card::DIAMONDS),
             new Card(4, Card::DIAMONDS),
             new Card(2, Card::DIAMONDS),
@@ -146,6 +165,26 @@ class HandTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(Hand::TRIO, $hand->winnerCombination());
 
     }
+
+
+
+    public function testLadderSimple(){
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(2, Card::HEARTS),
+            new Card(3, Card::DIAMONDS),
+            new Card(4, Card::PIKES),
+            new Card(5, Card::DIAMONDS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(Hand::LADDER, $hand->winnerCombination());
+
+    }
+
+
+
 
 
 

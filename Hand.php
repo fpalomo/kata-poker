@@ -14,6 +14,7 @@ class Hand
     const COUPLE = 2;
     const DOUBLE_COUPLE = 3;
     const TRIO = 4;
+    const LADDER = 5;
 
     public $cards;
 
@@ -25,6 +26,9 @@ class Hand
         foreach ($cards as $card) {
             if (!$card instanceof Card) {
                 throw new \exception("that is not a card!");
+            }
+            if ($card->number < 1 || $card->number > 13){
+                throw new \exception("the card number is not valid");
             }
         }
 
