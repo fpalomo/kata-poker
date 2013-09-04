@@ -185,6 +185,40 @@ class HandTest extends \PHPUnit_Framework_TestCase
 
 
 
+    public function testColorSimple(){
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(9, Card::CLUBS),
+            new Card(3, Card::CLUBS),
+            new Card(4, Card::CLUBS),
+            new Card(5, Card::CLUBS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(Hand::COLOR, $hand->winnerCombination());
+
+    }
+
+
+
+    public function testColorVsLadder(){
+        $cards = array(
+            new Card(1, Card::CLUBS),
+            new Card(2, Card::CLUBS),
+            new Card(3, Card::CLUBS),
+            new Card(4, Card::CLUBS),
+            new Card(5, Card::CLUBS),
+        );
+
+        $hand = new Hand($cards);
+
+        $this->assertEquals(Hand::COLOR, $hand->winnerCombination());
+
+    }
+
+
+
 
 
 

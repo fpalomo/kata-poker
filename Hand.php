@@ -15,6 +15,7 @@ class Hand
     const DOUBLE_COUPLE = 3;
     const TRIO = 4;
     const LADDER = 5;
+    const COLOR = 6;
 
     public $cards;
 
@@ -27,7 +28,7 @@ class Hand
             if (!$card instanceof Card) {
                 throw new \exception("that is not a card!");
             }
-            if ($card->number < 1 || $card->number > 13){
+            if ($card->number < 1 || $card->number > 13) {
                 throw new \exception("the card number is not valid");
             }
         }
@@ -46,9 +47,9 @@ class Hand
         $values = array_count_values($numbers);
         // ladder
         sort($numbers);
-        $result=self::LADDER;
-        for($i=1;$i<count($numbers);$i++){
-            if($numbers[$i]!=$numbers[$i-1]+1){
+        $result = self::LADDER;
+        for ($i = 1; $i < count($numbers); $i++) {
+            if ($numbers[$i] != $numbers[$i - 1] + 1) {
                 $result = null;
                 break;
             }
