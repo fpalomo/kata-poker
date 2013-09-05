@@ -11,7 +11,7 @@ of a hand, and the result must be the name of the winning combination.
 
 Poker Holdem rules: 
 
-http://www.pokerlistings.com/poker-rules
+http://www.pokerlistings.com/poker-hand-ranking
 
 
 
